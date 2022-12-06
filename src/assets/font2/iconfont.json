@@ -1,0 +1,30 @@
+{
+  "id": "3655406",
+  "name": "音乐项目",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "31886697",
+      "name": "点赞",
+      "font_class": "dianzan2",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "11372651",
+      "name": "点赞",
+      "font_class": "dianzan1",
+      "unicode": "e8ad",
+      "unicode_decimal": 59565
+    },
+    {
+      "icon_id": "8652815",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    }
+  ]
+}

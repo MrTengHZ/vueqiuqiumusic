@@ -1,32 +1,64 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="main">
+       <!-- 顶部组件 -->
+          <header-nav v-if="$route.meta.headerNav" v-show="hidden" @search-hidden="searchHidden"></header-nav>
+
+       <!-- 路由视图 -->
+          <router-view v-show="hidden"  @get-player-id="getPlayerId"  @get-play-all-id="getPlayAllId"></router-view>
+
+          <!-- 播放音乐 -->
+          <player ref="play" v-show="playerId" :player-id="playerId"  @get-player-id="getPlayerId" @get-play-allId="getPlayAllId" :list-id="listId"></player>
+
+          <!-- 搜索歌曲 -->
+          <search v-show="!hidden" @search-hidden="searchHidden"  @get-player-id="getPlayerId"></search>
+
+          <!-- 个人中心 -->
+          <!-- <personal-center></personal-center> -->
+
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import headerNav from "./components/base/headerNav.vue"
+import player from "./components/base/player.vue"
+import search from "./views/search.vue"
+// import personalCenter from "./components/base/personalCenter.vue"
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  data(){
+    return {
+     playerId:null,
+     listId:null,
+     hidden:true,
     }
-  }
-}
+  },
+  components: {
+    headerNav,
+     player,
+     search,
+    //  personalCenter
+  },
+   created(){
+     
+      },
+      methods:{
+        getPlayerId(id){
+          this.playerId = id;
+        },
+        getPlayAllId(id){
+          this.listId = id;
+          this.$refs.play.listIdtwo(id);
+        },
+        searchHidden(){
+          this.hidden=!this.hidden;
+        },
+      }
+};
+</script>
+
+<style lang="less">
+@import "./assets/css/base.css";
+
 </style>
